@@ -1,11 +1,7 @@
-import { View, Text, FlatList,Image } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
-import { ThemedView } from '@/components/themed-view';
-import { ThemedText } from '@/components/themed-text';
-import OnlineIndicator from '@/components/ui/onlineIndicator';
-import MoreCard from './MoreFriendsCard';
 
-const Friends = () => {
+const useFriends = () => {
     const friends: Friend[] = [
         {
             _id: '1',
@@ -13,6 +9,7 @@ const Friends = () => {
             username: 'johndoe',
             profilePicture: 'https://image.tmdb.org/t/p/w500/3HsIAbHWbFDUbY2jfj4wqEjGC3b.jpg',
             isOnline: true,
+            lastMessage: "Hey, how are you?"
         },
         {
             _id: '2',
@@ -20,6 +17,7 @@ const Friends = () => {
             username: 'janesmith',
             profilePicture: 'https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg',
             isOnline: false,
+            lastMessage: "Are you coming to the party?"
         },
         {
             _id: '3',
@@ -27,6 +25,7 @@ const Friends = () => {
             username: 'bobsmith',
             profilePicture: 'https://image.tmdb.org/t/p/w500/3HsIAbHWbFDUbY2jfj4wqEjGC3b.jpg',
             isOnline: true,
+            lastMessage: "Let's catch up later."
         },
         {
             _id: '4',
@@ -34,6 +33,7 @@ const Friends = () => {
             username: 'alicesmith',
             profilePicture: 'https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg',
             isOnline: false,
+            lastMessage: "Can you send me the report?"
         },
         {
             _id: '5',
@@ -41,6 +41,8 @@ const Friends = () => {
             username: 'charliesmith',
             profilePicture: 'https://image.tmdb.org/t/p/w500/3HsIAbHWbFDUbY2jfj4wqEjGC3b.jpg',
             isOnline: true,
+            isPinned: true,
+            lastMessage: "Don't forget our meeting tomorrow."
         },
         {
             _id: '6',
@@ -48,46 +50,11 @@ const Friends = () => {
             username: 'davesmith',
             profilePicture: 'https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg',
             isOnline: false,
+            isPinned: true,
+            lastMessage: "Happy Birthday!"
         }
-    ];
-
-    const MAX_VISIBLE = 4;
-    const visibleFriends = friends.slice(0, MAX_VISIBLE);
-    const hiddenCount = friends.length - MAX_VISIBLE;
-    const hiddenFriends = friends.slice(MAX_VISIBLE);
-
-
-  return (
-    <FlatList
-  data={visibleFriends}
-  horizontal
-  keyExtractor={(item) => item._id}
-  showsHorizontalScrollIndicator={false}
-  renderItem={({ item }) => (
-    <View className="mr-4 items-center">
-      <View className="relative">
-        <Image
-          source={{ uri: item.profilePicture }}
-          style={{ width: 60, height: 60, borderRadius: 12 }}
-        />
-        {item.isOnline && <OnlineIndicator />}
-      </View>
-      <ThemedText className="font-bold">
-        {item.name}
-      </ThemedText>
-    </View>
-  )}
-  ListFooterComponent={
-    hiddenCount > 0 ? (
-      <MoreCard
-        hiddenFriends={hiddenFriends}
-        hiddenCount={hiddenCount}
-      />
-    ) : null
-  }
-/>
-
-  )
+        ];
+    return { friends }
 }
 
-export default Friends
+export default useFriends

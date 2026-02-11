@@ -4,4 +4,6 @@ interface Friend {
     username: string;
     profilePicture: string;
     isOnline: boolean;
+    isPinned?: boolean;
+    lastMessage?: string;
 }
